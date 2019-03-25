@@ -11,6 +11,8 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
+import sonidos.Sonido;
+
 /**
  * Creado el 22 mar. 2019
  * 
@@ -43,6 +45,16 @@ public class Juego {
 		Collections.shuffle((List<?>) baraja);
 
 		puntosJugador = jugador(baraja);
+		
+		
+		
+		
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 
@@ -63,10 +75,20 @@ public class Juego {
 				System.out.print(c + " ");
 			System.out.println("Puntos: " + puntos);
 
-			System.out.println("Quieres otra carta? [*|n/N]: ");
-			opcion = entrada.nextLine().charAt(0);
+			if (puntos <= 21) {
+				Sonido.emitir("acierto.wav");
+				System.out.println("Quieres otra carta? [*|n/N]: ");
+				opcion = entrada.nextLine().charAt(0);
+			}else {
+				System.out.println("Te has pasado ");
+				Sonido.emitir("fallo.wav");
+				return 0;
+			}
+
+			
 		}
 
+		System.out.println("La siguiente carta era: " + baraja.peek());
 		return puntos;
 	}
 
