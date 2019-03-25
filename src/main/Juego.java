@@ -46,7 +46,7 @@ public class Juego {
 
 		puntosJugador = jugador(baraja);
 		
-		
+		System.out.println((new i2ascii("gameOver.jpg")).ConvertToAscii());
 		
 		
 		try {
